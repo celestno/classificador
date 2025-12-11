@@ -6,7 +6,7 @@ from datetime import timedelta
 
 # --- CONFIGURAÇÕES ---
 QTD_REGISTROS = 1000
-ARQUIVO_CSV = "dados_passaporte.csv"
+ARQUIVO_CSV = "GerarGringo/dados_passaporte.csv"
 
 fake = Faker('pt_BR')
 

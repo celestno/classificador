@@ -1,2 +1,5 @@
-.venv/
+.venv/*
+.env/*
 *.jpg
+GerarBR/*.jpg
+GerarGringo/*.jpg

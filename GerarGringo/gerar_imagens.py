@@ -8,11 +8,11 @@ import albumentations as A
 from PIL import Image, ImageFont, ImageDraw
 
 # --- CONFIGURAÇÕES ---
-ARQUIVO_CSV = "dados_passaporte.csv"
-ARQUIVO_JSON = "posicoes.json"
-TEMPLATE = "Tamplate_Passaporte.jpg"
-PASTA_FONTES = "fontes"
-PASTA_SAIDA = "dataset_sintetico"
+ARQUIVO_CSV = "GerarGringo/dados_passaporte.csv"
+ARQUIVO_JSON = "GerarGringo/posicoes.json"
+TEMPLATE = "GerarGringo/Tamplate_Passaporte.jpg"
+PASTA_FONTES = "GerarGringo/fontes"
+PASTA_SAIDA = "GerarGringo/dataset_sintetico"
 
 LIMITE_TESTE = 400
 
@@ -20,6 +20,9 @@ LIMITE_TESTE = 400
 COR_TEXTO_OPENCV = (35, 35, 35)
 COR_MRZ_OPENCV = (20, 20, 20)
 COR_ASSINATURA_PIL = (0, 0, 160)
+
+os.makedirs(PASTA_FONTES, exist_ok=True)
+os.makedirs(PASTA_SAIDA, exist_ok=True)
 
 # AUGMENTAÇÕES
 transform = A.Compose([

@@ -1,0 +1,19 @@
+{
+    "passaporte_num": [966, 1042],
+    "sobrenome": [487, 1090],
+    "nome": [486, 1168],
+    "data_nasc": [487, 1259],
+    "rg": [962, 1259],
+    "sexo": [487, 1308],
+    "naturalidade": [649, 1305],
+    "filiacao1": [490, 1358],
+    "filiacao2": [491, 1410],
+    "autoridade": [966, 1536],
+    "data_expedicao": [490, 1544],
+    "valido_ate": [491, 1593],
+    "mrz_linha1": [160, 1702],
+    "mrz_linha2": [160, 1747],
+    "nome_assinatura": [300, 205],
+    "foto_inicio": [126, 1095],
+    "foto_tamanho": [328, 426]
+}

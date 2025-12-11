@@ -5,21 +5,25 @@ import pytesseract
 import csv
 from passporteye import read_mrz
 
+# Classe responsavel por extrair as features
+# As imagens de passaportes devem estar na pasta ./images
+# As imagens de passaportes brasileiro devem estar em uma subpasta chamada 'brasileiro' dentro de ./images
 class ExtratorPassaportes:
     def __init__(self):
         self.imagens = []
 
-        self.listarImagens('./images')
+        self.listarImagens('SI/images')
         self.inicializarCSV()
 
     def inicializarCSV(self):
-        self.csv_path = "features.csv"
+        # Mapeamento das colunas do CSV
+        self.csv_path = "SI/features.csv"
         self.headers = [
             "republica", "federativa", "brasil", "filiacao", "filiation",
             "titular", "identidade", "emissor", "paisBrasil", "resposta"
         ]
 
-
+        #Se existir, remove o arquivo antigo
         if os.path.exists(self.csv_path):
             os.remove(self.csv_path)
 
@@ -48,7 +52,8 @@ class ExtratorPassaportes:
             return;
 
         texto = self.imagemParaTexto(img)
-
+        
+        # Faz a extração das features com base no texto retirado da imagem
         # features["url"] = url
         features['republica'] = 1 if 'republica' in texto else 0
         features['federativa'] = 1 if 'federativa' in texto else 0
@@ -62,6 +67,7 @@ class ExtratorPassaportes:
         features['paisBrasil'] = 0
 
         try:
+            # aqui tentei usar uma lib de MRZ para extrair o pais
             mrz = read_mrz(url)
             data = mrz.to_dict()
             features["paisBrasil"] = 1 if data.get("country", "") == "BRA" else 0
@@ -71,11 +77,13 @@ class ExtratorPassaportes:
         return features
 
     def salvarCSV(self, features: dict):
+        #aqui salva as features no CSV
         with open(self.csv_path, "a", newline="", encoding="utf-8") as f:
             writer = csv.DictWriter(f, fieldnames=self.headers)
             writer.writerow(features)
 
     def listarImagens(self, pasta):
+        # é so para listar as imagens na pasta para acessa-las depois
         for nome in os.listdir(pasta):
             caminho = os.path.join(pasta, nome)
 
@@ -99,6 +107,7 @@ class ExtratorPassaportes:
         return clean_text.lower()
 
     def extrairMRZ(self, img):
+        # Essa função faz um crop na imagem para tentar isolar a MRZ
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
         blur = cv2.GaussianBlur(gray, (5, 5), 0)

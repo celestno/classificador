@@ -2,6 +2,12 @@
 
 Este projeto implementa um sistema inteligente capaz de carregar imagens faciais, extrair suas features (vetores de características) e posteriormente utilizá-las para treinar um modelo de aprendizado de máquina.
 
+https://docs.google.com/presentation/d/1WpVLQtiBqAYVZq9jdbUqGnzHvrLeQVQ_3DuHWKWZEzs/edit
+
+---
+
+# Dados:
+
 ---
 
 ## 1. Pré-requisitos
@@ -74,10 +80,12 @@ Após gerar todas as features:
 
 ## 7. Execução do Sistema
 
-Cada módulo do projeto pode ter scripts específicos, mas a execução geral segue os passos:
+Apos o projeto estar organizado, voce deverá seguir o seguinte passo a passo:
 
-1. Instalar dependências
-2. Organizar imagens
-3. Executar o extrator de features
-4. Iniciar o treinamento
+1-  Voce deve criar o dataSet utilizando o geradorBr e GeradorGringo, basta colocar o template, e as imagens baixadas e em seguida executar o gerar_imagens.py, todas as imagens serão geradas na pasta dataset_sintetico, apos elas estarem geradas, voce deve movelas para a pasta SI/images/brasileiro e os gringos em SI/images/
 
+2- Com as imagens prontas, execute o script Extrair.py para que ele faça a extração das features das imagens em um arquivo features.csv
+
+3- com as features extraidas, execute o arquivo treinador.py para que ele treine e gere um modelo pronto para testar
+
+4- com o modelo treinado, podemos executa-lo, para execução em produção, as imagens nao precisam necessariamente estar em /brasileiro, basta colocar na raiz em SI/images, apos colocar as imagens execute o Extrair.py para extrair features, apos, execute o usarModelo.py para usar o modelo nas features extraidas
